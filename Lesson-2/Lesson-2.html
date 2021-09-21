@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson-2</title>
+</head>
+
+<body>
+    <p>
+    <h4>1. Дан код: </h4>
+    var a = 1, b = 1, c, d;<br>
+    c = ++a; alert(c); // 2 к а применина префиксная форма возвращает новое значение<br>
+    d = b++; alert(d); // 1 к b применина постфиксная форма возвращает старое значение <br>
+    c = (2+ ++a); alert(c); // 5 а уже 2 раза применина префиксная форма 2 +(1+1+1)<br>
+    d = (2+ b++); alert(d); // 4 b будет 3 тольок после примера ответ 4<br>
+    alert(a); // 3 2 раза была добавлена +1<br>
+    alert(b); // 3 2 раза была добавлена +1<br></p>
+
+
+    <p>
+    <h4>2. Чему будет равен x в примере ниже?</h4>
+    var a = 2;<br>
+    var x = 1 + (a *= 2);<br>
+    x = 1 + (2*2) = 5<br></p>
+
+    <p>
+    <h4>3. Объявить две целочисленные переменные a и b и задать им произвольные начальные значения. Затем
+        написать
+        скрипт, который работает по следующему принципу:</h4>
+    если a и b положительные, вывести их разность;<br>
+    если а и b отрицательные, вывести их произведение;<br>
+    если а и b разных знаков, вывести их сумму; ноль можно считать положительным числом.<br></p>
+
+    <script>
+        var a = parseInt(Math.random() * 10) - 5;
+        var b = parseInt(Math.random() * 10) - 5;
+
+        alert("Задание 3 a=" + a + ' b=' + b);
+
+        if (a > 0 && b > 0) {
+            alert("разность=" + (a - b));
+
+        } else if (a < 0 && b < 0) {
+            alert("произведение=" + (a * b));
+        } else {
+            alert("сумма=" + (a + b));
+        }
+    </script>
+
+
+    <p>
+    <h4>4. Присвоить переменной а значение в промежутке [0..15]. С помощью оператора switch организовать вывод чисел от
+        a до 15. (по желанию можно использовать рекурсию)</h4>
+    </p>
+
+    <script>
+        function show_a(a) {
+
+            if (a < 15) {
+                alert(a)
+                show_a(++a)
+            }
+        }
+
+        var a = parseInt(Math.random() * 15);
+        alert("Задание 4 число a=" + a);
+        show_a(a);</script>
+
+    <p>
+    <h4>5. Реализовать основные 4 арифметические операции в виде функций с двумя параметрами. Обязательно использовать
+        оператор return.</h4>
+    </p>
+
+    <script>
+        function calc_addition(a, b) { return a + b }
+        function calc_subtraction(a, b) { return a - b }
+        function calc_division(a, b) { return a / b }
+        function calc_multiplication(a, b) { return a * b }
+
+
+        /*var a = parseInt(Math.random() * 10);
+        var b = parseInt(Math.random() * 10);
+
+        alert("Задание 5 a= " + a + " b= " + b)
+        alert("сложение = " + calc_addition(a, b))
+        alert("вычитание = " + calc_subtraction(a, b))
+        alert("деление = " + calc_division(a, b))
+        alert("умножение = " + calc_multiplication(a, b))*/
+
+    </script>
+
+    <p>
+    <h4>6. Реализовать функцию с тремя параметрами: function mathOperation(arg1, arg2, operation), где arg1, arg2 –
+        значения аргументов, operation – строка с названием операции. В зависимости от переданного значения операции
+        выполнить одну из арифметических операций (использовать функции из пункта 3) и вернуть полученное значение
+        (использовать switch).</h4>
+    </p>
+
+    <script>
+        function mathOperation(arg1, arg2, operation) {
+
+            switch (operation) {
+                case '+':
+                    return calc_addition(arg1, arg2);
+                    break;
+                case '-':
+                    return calc_subtraction(arg1, arg2);
+                    break;
+                case '/':
+                    return calc_division(arg1, arg2);
+                    break;
+                case '*':
+                    return calc_multiplication(arg1, arg2);
+                    break;
+            }
+        }
+
+        var a = parseInt(Math.random() * 10);
+        var b = parseInt(Math.random() * 10);
+
+        alert("Задание 6 a= " + a + " b= " + b)
+
+        alert("сложение = " + mathOperation(a, b, '+'))
+        alert("вычитание = " + mathOperation(a, b, '-'))
+        alert("деление = " + mathOperation(a, b, '/'))
+        alert("умножение = " + mathOperation(a, b, '*'))
+
+    </script>
+
+
+</html>
