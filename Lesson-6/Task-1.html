@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task-1</title>
+
+    <script>
+
+        function init() {
+            var images = document.getElementsByTagName("img");
+            for (var i = 0; i < images.length; i++) {
+                images[i].onclick = changeBigPicture;
+            }
+        }
+
+        function NoImage() {
+            alert('Фото не найдено!')
+            this.src = 'img/NoImage.png';
+        }
+        function changeBigPicture(eventObj) {
+            var appDiv = document.getElementById("big_picture");
+            appDiv.innerHTML = "";
+            var eventElement = eventObj.target;
+            var imageNameParts = eventElement.id.split("_");
+            var src = "img/big/" + imageNameParts[1] + ".jpg";
+            var imageDomElement = document.createElement('img');
+            imageDomElement.src = src;
+            imageDomElement.onerror = NoImage;
+            appDiv.append(imageDomElement);
+            //imageDomElement.onclick = changeSmallPicture;
+        }
+
+        // function changeSmallPicture(eventObj) {
+        //     var appDiv = document.getElementById("big_picture");
+        //     appDiv.innerHTML = "";
+        //     var eventElement = eventObj.target;
+        //     var imageNameParts = eventElement.id.split("_");
+        //     var src = "img/small/" + imageNameParts[1] + ".jpg";
+        //     var imageDomElement = document.getElementById("image_" + imageNameParts[1]);
+        //     imageDomElement.src = src;
+        //     imageDomElement.onclick = changeBigPicture;
+        // }
+        window.onload = init;
+
+
+    </script>
+</head>
+
+<body>
+
+
+    <div id="gallery">
+        <img id="image_1" src="img/small/1.jpg">
+        <img id="image_2" src="img/small/2.jpg">
+        <img id="image_3" src="img/small/3.jpg">
+    </div>
+
+    <div id="big_picture"></div>
+</body>
+
+</html>

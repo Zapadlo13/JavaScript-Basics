@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task-2</title>
+    <style>
+        #Items {
+            display: flex;
+            justify-content: space-around;
+            text-align: center;
+        }
+
+        #ItemList {
+            display: flex;
+            justify-content: space-around;
+            text-align: center;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        td {
+            text-align: center;
+            font-size: 200%;
+        }
+
+        caption {
+            font-size: 200%;
+        }
+
+        .name {
+            width: 300px;
+        }
+    </style>
+
+    <script>
+
+        var itemsArray = [
+            {
+                name: 'Котик 1',
+                price: 1000,
+                img: 'img/small/1.jpg'
+            }, {
+                name: 'Котик 2',
+                price: 1200,
+                img: 'img/small/2.jpg'
+            }, {
+                name: 'Котик 3',
+                price: 1300,
+                img: 'img/small/3.jpg'
+            }]
+
+        var list = [];// Корзина
+
+        function initItems() {
+            var Items = document.querySelector('#Items');
+
+            for (i = 0; i < itemsArray.length; i++) {
+                var div = document.createElement('div');
+                var h = document.createElement('h2');
+                h.innerText = itemsArray[i].name;
+                div.append(h);
+                var img = document.createElement('img');
+                img.src = itemsArray[i].img;
+                div.append(img);
+                var price = document.createElement('h2');
+                price.innerText = 'Цена:' + itemsArray[i].price;
+                div.append(price);
+                var button = document.createElement('button');
+                button.innerText = 'Купить';
+                button.id = 'button_' + i;
+                button.onclick = addList
+                div.append(button);
+                Items.appendChild(div);
+            }
+        }
+
+        function initList() {
+            var ItemList = document.querySelector('#ItemList');
+            ItemList.innerHTML = "";
+
+            var table = document.createElement('table');
+            var caption = document.createElement('caption');
+            caption.innerText = 'Корзина покупок';
+
+            var sum_all = 0;
+
+            table.append(caption);
+            // шапка таблицы
+            var tr = document.createElement('tr');
+            var td = document.createElement('td');
+            td.innerText = 'Наименование';
+            td.setAttribute("class", "name");
+            tr.append(td);
+            var td = document.createElement('td');
+            td.innerText = 'Количество';
+            td.setAttribute("class", "name");
+            tr.append(td);
+            var td = document.createElement('td');
+            td.innerText = 'Сумма';
+            tr.append(td);
+            table.append(tr);
+
+            //строки таблица
+            for (i = 0; i < list.length; i++) {
+                var tr = document.createElement('tr');
+                for (j = 0; j <= 1; j++) {
+                    var td = document.createElement('td');
+                    td.innerText = list[i][j];
+                    tr.append(td);
+                }
+                sum = list[i][1] * list[i][2];
+                sum_all += sum;
+                var td = document.createElement('td');
+                td.innerText = sum;
+                tr.append(td);
+                table.append(tr);
+            }
+            // Подвал таблицы
+            var tr = document.createElement('tr');
+            var td = document.createElement('td');
+            td.innerText = '';
+            tr.append(td);
+            var td = document.createElement('td');
+            td.innerText = 'Итого:';
+            tr.append(td);
+            var td = document.createElement('td');
+            td.innerText = sum_all;
+            tr.append(td);
+            table.append(tr);
+
+            ItemList.append(table);
+        }
+
+
+        function init() {
+            initItems();
+            initList();
+
+        }
+
+
+        function find(value) {
+            for (var i = 0; i < list.length; i++) {
+                if (list[i][0] == value)
+                    return i;
+            }
+            return null;
+        }
+
+        function addList() {
+
+            id = this.id.split("_")[1];
+            str = find(itemsArray[id].name);
+            if (str == null) {
+                list.push([itemsArray[id].name, 1, itemsArray[id].price]);
+            }
+            else { list[str][1] = list[str][1] + 1 }
+            initList();
+        }
+        window.onload = init
+    </script>
+</head>
+
+<body>
+
+    <div id='ItemList'>
+
+    </div>
+
+    <div id='Items'>
+
+    </div>
+
+</body>
+
+</html>
