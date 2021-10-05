@@ -1,0 +1,27 @@
+table {
+    border-collapse: collapse;
+}
+
+td,
+th {
+    width: 50px;
+    height: 50px;
+    text-align: center;   	
+    font-size: 200%;
+}
+
+td {  font-size: 300%;}
+
+.black {
+    border: 1px solid grey;
+    background: rgb(108, 108, 108);
+}
+
+.white {
+    border: 1px solid grey;
+    background: rgb(185, 185, 185);
+}
+
+.rotate {
+    transform: rotate(180deg)
+}
